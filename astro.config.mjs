@@ -10,11 +10,6 @@ import node from "@astrojs/node";
 export default defineConfig({
   output: "server",
   integrations: [tailwind({ applyBaseStyles: false }), react()],
-
-  server: {
-    port: 80,
-  },
-
   adapter: node({
     mode: "standalone",
   }),
