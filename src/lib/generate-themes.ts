@@ -34,8 +34,8 @@ Promise.all(
     }
 
     const parts = folder.split("-");
-    const themeName = parts[0];
-    const authorCode = parts.at(-1);
+    const authorCode = parts.pop();
+    const themeName = parts.join("-");
 
     const response = await axios.get(
       `https://hydra-api-us-east-1.losbroxas.org/themes/users/${authorCode}`,
