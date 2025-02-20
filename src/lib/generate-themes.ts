@@ -9,7 +9,21 @@ import { redis } from "./redis";
 
 const themesPath = path.join(import.meta.dirname, "..", "..", "themes");
 
-const folders = fs.readdirSync(themesPath);
+const folders = fs
+  .readdirSync(themesPath)
+  .map((folder) => {
+    return {
+      folder,
+      time: fs.statSync(path.join(themesPath, folder)).ctime.getTime(),
+    };
+  })
+  .sort((a, b) => {
+    return a.time - b.time;
+  })
+  .map((folder) => {
+    console.log(folder.folder, new Date(folder.time));
+    return folder.folder;
+  });
 
 const hydraHeaderSecret = process.env.HYDRA_HEADER_SECRET;
 
@@ -114,14 +128,16 @@ Promise.all(
       favorites: 0,
     } as Theme;
   }),
-).then((themes) => {
-  console.log(`Generated ${themes.length} themes`);
+)
+  .then((themes) => themes.filter((theme) => theme))
+  .then((themes) => {
+    console.log(`Generated ${themes.length} themes`);
 
-  fs.writeFileSync(
-    path.join(import.meta.dirname, "themes.json"),
-    // Fix themes returning null
-    JSON.stringify(themes.filter((theme) => theme)),
-  );
+    fs.writeFileSync(
+      path.join(import.meta.dirname, "themes.json"),
+      // Fix themes returning null
+      JSON.stringify(themes.filter((theme) => theme)),
+    );
 
-  redis.disconnect();
-});
+    redis.disconnect();
+  });
