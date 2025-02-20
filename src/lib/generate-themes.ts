@@ -5,6 +5,7 @@ import path from "node:path";
 import type { Theme } from "./schemas/theme";
 import axios from "axios";
 import sharp from "sharp";
+import { redis } from "./redis";
 
 const themesPath = path.join(import.meta.dirname, "..", "..", "themes");
 
@@ -92,6 +93,15 @@ Promise.all(
         .resize(340, null, { fit: "inside" })
         .toFormat("webp")
         .toFile(path.join(publicThemePath, "screenshot.webp"));
+
+      await redis.set(
+        `theme:${authorCode}:${themeName}`,
+        JSON.stringify({
+          downloads: 0,
+          favorites: 0,
+          createdAt: new Date(),
+        }),
+      );
     }
 
     return {
@@ -112,4 +122,6 @@ Promise.all(
     // Fix themes returning null
     JSON.stringify(themes.filter((theme) => theme)),
   );
+
+  redis.disconnect();
 });
