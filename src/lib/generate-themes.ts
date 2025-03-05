@@ -82,7 +82,12 @@ Promise.all(
       await sharp(path.join(folderPath, screenshotFile))
         .resize(340, null, { fit: "inside" })
         .toFormat("webp")
-        .toFile(path.join(publicThemePath, "screenshot.webp"));
+        .toFile(path.join(publicThemePath, "screenshot.webp"))
+        .then(() => {
+          if (screenshotFile !== "screenshot.webp") {
+            fs.unlinkSync(path.join(publicThemePath, screenshotFile));
+          }
+        });
     }
 
     const redisKey = `theme:${authorCode}:${themeName}`;
