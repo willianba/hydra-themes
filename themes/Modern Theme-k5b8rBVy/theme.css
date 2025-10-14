@@ -16,6 +16,7 @@
 /* Main content */
 .container__content {
   background: black !important;
+  background-color: black;
 }
 
 /* Bottom panel */
@@ -104,10 +105,6 @@
 }
 
 .title-bar {
-  background-color: black;
-}
-
-.container__content {
   background-color: black;
 }
 
