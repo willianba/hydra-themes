@@ -8,4 +8,4 @@
 
 Good example of how files should be in the PR:
 
-![Example of files in a good PR](../docs/pr-example.png)
+![Example of files in a good PR](https://raw.githubusercontent.com/hydralauncher/hydra-themes/f61313ffdf4f1d5cfd2149583a02eb4da4e6c530/docs/pr-example.png)
