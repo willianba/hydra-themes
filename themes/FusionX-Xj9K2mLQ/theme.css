@@ -431,24 +431,3 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-bright);
   font-weight: 600;
 }
-
-/* Subtle Glow Effect for Interactive Elements */
-.button--primary {
-  position: relative;
-}
-
-.button--primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.button--primary:hover::before {
-  opacity: 0.3;
-}
