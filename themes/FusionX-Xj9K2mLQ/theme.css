@@ -3,7 +3,7 @@
  * @author Inspired by sakasakiking's Playnite FusionX Theme
  * @version 1.0
  * @invite Xj9K2mLQ
- * @description A beautiful and consistent designed theme inspired by the FusionX Playnite theme - featuring a modern dark blue aesthetic with vibrant accent gradients.
+ * @description A beautiful and consistently designed theme inspired by the FusionX Playnite theme - featuring a modern dark blue aesthetic with vibrant accent gradients.
  * @source https://github.com/sakasakiking/FusionX
 */
 
@@ -433,13 +433,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Subtle Glow Effect for Interactive Elements */
-.button--primary,
-.sidebar__menu-item--active {
+.button--primary {
   position: relative;
 }
 
-.button--primary::before,
-.sidebar__menu-item--active::before {
+.button--primary::before {
   content: '';
   position: absolute;
   top: 0;
