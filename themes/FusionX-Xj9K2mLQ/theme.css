@@ -2,7 +2,6 @@
  * @name FusionX
  * @author Inspired by sakasakiking's Playnite FusionX Theme
  * @version 1.0
- * @invite Xj9K2mLQ
  * @description A beautiful and consistently designed theme inspired by the FusionX Playnite theme - featuring a modern dark blue aesthetic with vibrant accent gradients.
  * @source https://github.com/sakasakiking/FusionX
 */
@@ -100,6 +99,7 @@ body {
   color: var(--text-bright);
 }
 
+.theme-card--active,
 .sidebar__menu-item--active {
   background: linear-gradient(135deg, rgba(3, 121, 255, 0.2) 0%, rgba(173, 0, 255, 0.1) 100%);
   border: 1px solid var(--accent-blue);
@@ -113,19 +113,21 @@ body {
 
 /* Sidebar Profile - positioned at bottom with floating effect */
 .sidebar-profile {
-  margin-top: auto;
+  margin: 0.5rem 0;
   order: 999;
   background: linear-gradient(135deg, rgba(3, 121, 255, 0.12) 0%, rgba(173, 0, 255, 0.08) 100%);
   border: 1px solid rgba(3, 121, 255, 0.3);
   border-radius: 8px;
-  padding: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(3, 121, 255, 0.2);
   transition: all 0.3s ease;
+  width: 90%;
+  height: 4rem;
+  padding: 4px;
+  gap: 8px;
+  align-self: center;
 }
 
 .sidebar-profile:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(3, 121, 255, 0.3);
   border-color: rgba(3, 121, 255, 0.5);
 }
 
@@ -138,6 +140,7 @@ body {
 .sidebar-profile__friends-button {
   background-color: var(--control-background);
   border-radius: 8px;
+  margin-right: 4px;
 }
 
 .sidebar-profile__friends-button:hover {
@@ -152,18 +155,25 @@ body {
 .profile-hero__user-information {
   background: linear-gradient(135deg, rgba(3, 121, 255, 0.15) 0%, rgba(173, 0, 255, 0.1) 100%);
   border: 1px solid var(--control-border);
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
   padding: 16px;
 }
 
 .profile-hero__content-box {
-  background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%) !important;
   border: 1px solid var(--control-border);
   border-radius: 8px;
+  align-self: center !important;  
+  margin: 24px;
+}
+
+.profile-hero__hero-panel {
+  background: linear-gradient(135deg, var(--main-color) 0%, var(--main-color-dark) 100%) !important;
+  border-radius: 0 0 8px 8px;
 }
 
 /* Fix orange background in profile - replace with theme gradient */
-.profile-hero__hero-panel,
+.profile-hero__user-information,
 .profile-hero {
   background: linear-gradient(135deg, var(--main-color) 0%, var(--main-color-dark) 100%) !important;
 }
@@ -175,6 +185,13 @@ body {
 .profile-content__main {
   background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%);
   border-radius: 8px;
+  border: 1px solid var(--control-border);
+  padding: 16px;
+}
+
+.profile-content__main:hover {
+  border-color: var(--accent-blue);
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.12) 0%, rgba(173, 0, 255, 0.08) 100%);
 }
 
 /* Profile Avatar - Can be customized with gradient or image */
@@ -198,6 +215,7 @@ body {
 .sidebar-section__button {
   background: linear-gradient(180deg, var(--main-color-dark) 0%, #0a0e1e 100%);
   border-radius: 8px;
+  padding: 12px;
 }
 
 /* Main Container */
@@ -365,6 +383,7 @@ main {
   background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%);
   border: 1px solid var(--control-border);
   border-radius: 8px;
+  padding: 12px;
 }
 
 .game-details__cloud-sync-button {
@@ -410,6 +429,11 @@ main {
   background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%);
   border: 1px solid var(--control-border);
   border-radius: 8px;
+  margin: 8px;
+}
+
+.bb_ul {
+  margin-left: 24px;
 }
 
 .requirement__button {
@@ -417,11 +441,9 @@ main {
   border-radius: 8px;
 }
 
-/* Content Sidebar */
-.content-sidebar {
-  background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%);
-  border: 1px solid var(--control-border);
-  border-radius: 8px;
+.requirement__button-container {
+  gap: 4px;
+  padding: 6px 8px;
 }
 
 /* Hero Panel */
@@ -439,11 +461,17 @@ main {
 .user-stats__box,
 .recent-games__box,
 .friends-box__box,
-.user-karma__box {
+.user-karma__box,
+.content-sidebar {
   background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%);
   border: 1px solid var(--control-border);
   border-radius: 8px;
   transition: all 0.2s ease;
+  padding: 8px;
+}
+
+.user-karma__box {
+  padding: 16px;
 }
 
 .user-stats__box:hover,
@@ -512,10 +540,6 @@ main {
   border-radius: 8px;
 }
 
-.select-field--primary {
-  background-color: var(--control-background);
-  border-color: var(--accent-blue);
-}
 
 .select-field__option {
   background-color: var(--popup-background);
@@ -719,13 +743,6 @@ main {
 }
 
 /* Achievement Notifications */
-.achievement-notification__outer-container {
-  background: var(--main-color-dark);
-  border-radius: 8px;
-  border: 1px solid var(--control-border);
-  transition: border-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-}
-
 .achievement-notification__container {
   background: linear-gradient(135deg, rgba(3, 121, 255, 0.1) 0%, rgba(173, 0, 255, 0.08) 100%);
   border-radius: 8px;
@@ -733,67 +750,15 @@ main {
   transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
 }
 
-.achievement-notification__icon {
-  border-radius: 8px;
-  border: 1px solid var(--accent-blue);
-  transition: outline-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-  object-fit: cover;
-}
-
-.achievement-notification__title {
-  font-weight: bold;
-  color: var(--text-bright);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.achievement-notification__description {
-  font-size: 0.85em;
-  color: var(--text-secondary);
-}
-
-.achievement-notification__chip {
-  background: var(--control-background);
-  border-radius: 15px 5px 15px 5px;
-  font-size: 0.75em;
-  font-weight: bold;
-  color: var(--text-primary);
-  border: 1px solid var(--control-border);
-}
-
-.achievement-notification__chip__label {
-  color: var(--text-primary);
-}
-
-.achievement-notification__chip__icon path {
-  fill: var(--accent-blue);
-  transition: fill 0.4s ease-in-out;
-}
-
 /* Rare Achievement */
-.achievement-notification--rare .achievement-notification__container {
-  border-color: var(--accent-blue);
-  background: linear-gradient(135deg, rgba(3, 121, 255, 0.15) 0%, rgba(173, 0, 255, 0.12) 100%);
-}
-
 .achievement-notification--rare .achievement-notification__icon {
   border-color: var(--accent-blue);
   box-shadow: 0 0 15px rgba(3, 121, 255, 0.5);
-  animation: pulseGlow 2.5s infinite ease-in-out;
-}
-
-.achievement-notification--rare .achievement-notification__chip {
-  background: var(--accent-blue);
-  color: var(--text-bright);
-  border-color: var(--accent-blue-light);
-}
-
-.achievement-notification--rare .achievement-notification__chip__icon path {
-  fill: #ffffff;
+  animation: pulseGlow 1.5s infinite ease-in-out;
 }
 
 /* Platinum Achievement */
 .achievement-notification--platinum .achievement-notification__container {
-  border-color: var(--accent-purple);
   background: linear-gradient(135deg, 
     rgba(173, 0, 255, 0.15) 0%, 
     rgba(3, 121, 255, 0.12) 100%
@@ -803,18 +768,7 @@ main {
 .achievement-notification--platinum .achievement-notification__icon {
   border: 1px solid var(--accent-purple);
   box-shadow: 0 0 20px rgba(173, 0, 255, 0.6);
-  animation: pulseGlow 2s infinite ease-in-out;
-}
-
-.achievement-notification--platinum .achievement-notification__chip {
-  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
-  color: var(--text-bright);
-  border: 1px solid var(--accent-purple);
-  font-weight: bold;
-}
-
-.achievement-notification--platinum .achievement-notification__chip__icon path {
-  fill: #ffffff;
+  animation: pulseGlow 1.5s infinite ease-in-out;
 }
 
 /* Pulse glow animation for rare/platinum achievements */
