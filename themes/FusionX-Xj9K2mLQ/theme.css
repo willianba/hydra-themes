@@ -85,6 +85,38 @@ body {
   background: linear-gradient(180deg, var(--main-color-dark) 0%, #0a0e1e 100%);
   color: var(--text-secondary);
   border-right: 1px solid var(--separator-color);
+  transition: width 0.3s ease, transform 0.3s ease;
+}
+
+/* Note: Collapsible sidebar functionality requires JavaScript support from Hydra Launcher.
+   The CSS below provides styling for when/if the feature is implemented.
+   Currently, CSS-only solutions cannot provide a functional collapse/expand toggle. */
+
+.sidebar--collapsed {
+  width: 60px !important;
+  min-width: 60px !important;
+}
+
+.sidebar--collapsed .sidebar__menu-item span,
+.sidebar--collapsed .sidebar-profile,
+.sidebar--collapsed .sidebar__help-button span {
+  display: none;
+}
+
+/* Sidebar toggle button styling (if implemented) */
+.sidebar__toggle-button {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+  border: 1px solid var(--accent-blue);
+  border-radius: 8px;
+  color: var(--text-bright);
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar__toggle-button:hover {
+  box-shadow: 0 4px 12px rgba(3, 121, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 .sidebar__menu-item {
@@ -111,14 +143,43 @@ body {
   color: var(--accent-tone);
 }
 
+/* Sidebar Profile - positioned at bottom */
 .sidebar-profile {
-  background: linear-gradient(135deg, rgba(3, 121, 255, 0.15) 0%, rgba(173, 0, 255, 0.1) 100%);
-  border: 1px solid var(--control-border);
+  margin-top: auto;
+  order: 999;
+}
+
+.sidebar__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-profile__friends-button {
+  background-color: var(--control-background);
   border-radius: 8px;
 }
 
-.sidebar-profile__button-content {
-  color: var(--text-primary);
+.sidebar-profile__friends-button:hover {
+  background-color: var(--control-hover);
+}
+
+.sidebar-profile__friends-button svg {
+  fill: var(--accent-blue);
+}
+
+/* Profile Hero (User Profile Page) */
+.profile-hero__user-information {
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.15) 0%, rgba(173, 0, 255, 0.1) 100%);
+  border: 1px solid var(--control-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.profile-hero__content-box {
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%);
+  border: 1px solid var(--control-border);
+  border-radius: 8px;
 }
 
 /* Profile Avatar - Can be customized with gradient or image */
@@ -137,19 +198,6 @@ body {
 
 .profile-avatar__image {
   border-radius: 50%;
-}
-
-.sidebar-profile__friends-button {
-  background-color: var(--control-background);
-  border-radius: 8px;
-}
-
-.sidebar-profile__friends-button:hover {
-  background-color: var(--control-hover);
-}
-
-.sidebar-profile__friends-button svg {
-  fill: var(--accent-blue);
 }
 
 .sidebar-section__button {
@@ -509,28 +557,172 @@ main {
   background: linear-gradient(135deg, var(--main-color) 0%, var(--main-color-dark) 100%);
   border: 1px solid var(--accent-blue);
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(3, 121, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(3, 121, 255, 0.4), 0 0 30px rgba(3, 121, 255, 0.2);
   color: var(--text-bright);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.toast:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(3, 121, 255, 0.5), 0 0 40px rgba(3, 121, 255, 0.3);
 }
 
 .toast--success {
   border-color: #78ffa0;
-  box-shadow: 0 4px 16px rgba(120, 255, 160, 0.3);
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--main-color) 80%, #78ffa0 20%), 
+    color-mix(in srgb, var(--main-color-dark) 80%, #78ffa0 20%)
+  );
+  box-shadow: 0 4px 16px rgba(120, 255, 160, 0.4), 0 0 30px rgba(120, 255, 160, 0.2);
+}
+
+.toast--success:hover {
+  box-shadow: 0 6px 20px rgba(120, 255, 160, 0.5), 0 0 40px rgba(120, 255, 160, 0.3);
 }
 
 .toast--error {
   border-color: #ff6b6b;
-  box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--main-color) 80%, #ff6b6b 20%), 
+    color-mix(in srgb, var(--main-color-dark) 80%, #ff6b6b 20%)
+  );
+  box-shadow: 0 4px 16px rgba(255, 107, 107, 0.4), 0 0 30px rgba(255, 107, 107, 0.2);
+}
+
+.toast--error:hover {
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5), 0 0 40px rgba(255, 107, 107, 0.3);
 }
 
 .toast--warning {
   border-color: var(--accent-tone);
-  box-shadow: 0 4px 16px rgba(255, 204, 0, 0.3);
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--main-color) 80%, #FFCC00 20%), 
+    color-mix(in srgb, var(--main-color-dark) 80%, #FFCC00 20%)
+  );
+  box-shadow: 0 4px 16px rgba(255, 204, 0, 0.4), 0 0 30px rgba(255, 204, 0, 0.2);
+}
+
+.toast--warning:hover {
+  box-shadow: 0 6px 20px rgba(255, 204, 0, 0.5), 0 0 40px rgba(255, 204, 0, 0.3);
 }
 
 .toast--info {
   border-color: var(--accent-blue);
-  box-shadow: 0 4px 16px rgba(3, 121, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(3, 121, 255, 0.4), 0 0 30px rgba(3, 121, 255, 0.2);
+}
+
+.toast--info:hover {
+  box-shadow: 0 6px 20px rgba(3, 121, 255, 0.5), 0 0 40px rgba(3, 121, 255, 0.3);
+}
+
+/* Achievement Notifications */
+.achievement-notification__outer-container {
+  background: var(--main-color-dark);
+  border-radius: 8px;
+  border: 1px solid var(--control-border);
+  transition: border-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.achievement-notification__container {
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.1) 0%, rgba(173, 0, 255, 0.08) 100%);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+}
+
+.achievement-notification__icon {
+  border-radius: 8px;
+  border: 1px solid var(--accent-blue);
+  transition: outline-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  object-fit: cover;
+}
+
+.achievement-notification__title {
+  font-weight: bold;
+  color: var(--text-bright);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.achievement-notification__description {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+}
+
+.achievement-notification__chip {
+  background: var(--control-background);
+  border-radius: 15px 5px 15px 5px;
+  font-size: 0.75em;
+  font-weight: bold;
+  color: var(--text-primary);
+  border: 1px solid var(--control-border);
+}
+
+.achievement-notification__chip__label {
+  color: var(--text-primary);
+}
+
+.achievement-notification__chip__icon path {
+  fill: var(--accent-blue);
+  transition: fill 0.4s ease-in-out;
+}
+
+/* Rare Achievement */
+.achievement-notification--rare .achievement-notification__container {
+  border-color: var(--accent-blue);
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.15) 0%, rgba(173, 0, 255, 0.12) 100%);
+}
+
+.achievement-notification--rare .achievement-notification__icon {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 15px rgba(3, 121, 255, 0.5);
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+.achievement-notification--rare .achievement-notification__chip {
+  background: var(--accent-blue);
+  color: var(--text-bright);
+  border-color: var(--accent-blue-light);
+}
+
+.achievement-notification--rare .achievement-notification__chip__icon path {
+  fill: #ffffff;
+}
+
+/* Platinum Achievement */
+.achievement-notification--platinum .achievement-notification__container {
+  border-color: var(--accent-purple);
+  background: linear-gradient(135deg, 
+    rgba(173, 0, 255, 0.15) 0%, 
+    rgba(3, 121, 255, 0.12) 100%
+  );
+}
+
+.achievement-notification--platinum .achievement-notification__icon {
+  border: 1px solid var(--accent-purple);
+  box-shadow: 0 0 20px rgba(173, 0, 255, 0.6);
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+.achievement-notification--platinum .achievement-notification__chip {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+  color: var(--text-bright);
+  border: 1px solid var(--accent-purple);
+  font-weight: bold;
+}
+
+.achievement-notification--platinum .achievement-notification__chip__icon path {
+  fill: #ffffff;
+}
+
+/* Pulse glow animation for rare/platinum achievements */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(3, 121, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(3, 121, 255, 0.8);
+  }
 }
 
 /* Scrollbar */
