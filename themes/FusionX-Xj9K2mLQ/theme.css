@@ -111,6 +111,34 @@ body {
   color: var(--accent-tone);
 }
 
+.sidebar-profile {
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.15) 0%, rgba(173, 0, 255, 0.1) 100%);
+  border: 1px solid var(--control-border);
+  border-radius: 8px;
+}
+
+.sidebar-profile__button-content {
+  color: var(--text-primary);
+}
+
+/* Profile Avatar - Can be customized with gradient or image */
+.profile-avatar {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+  border-radius: 50%;
+  border: 2px solid var(--accent-blue);
+  /* To use a custom image instead of gradient:
+     1. Remove the background gradient above
+     2. Add your image URL like this:
+     background-image: url('YOUR_IMAGE_URL_HERE.png');
+     background-size: cover;
+     background-position: center;
+  */
+}
+
+.profile-avatar__image {
+  border-radius: 50%;
+}
+
 .sidebar-profile__friends-button {
   background-color: var(--control-background);
   border-radius: 8px;
@@ -118,6 +146,10 @@ body {
 
 .sidebar-profile__friends-button:hover {
   background-color: var(--control-hover);
+}
+
+.sidebar-profile__friends-button svg {
+  fill: var(--accent-blue);
 }
 
 .sidebar-section__button {
@@ -313,8 +345,9 @@ main {
 /* User Stats Boxes */
 .user-stats__box,
 .recent-games__box,
-.friends-box__box {
-  background-color: transparent;
+.friends-box__box,
+.user-karma__box {
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.08) 0%, rgba(173, 0, 255, 0.05) 100%);
   border: 1px solid var(--control-border);
   border-radius: 8px;
   transition: all 0.2s ease;
@@ -322,8 +355,24 @@ main {
 
 .user-stats__box:hover,
 .recent-games__box:hover,
-.friends-box__box:hover {
+.friends-box__box:hover,
+.user-karma__box:hover {
   border-color: var(--accent-blue);
+  background: linear-gradient(135deg, rgba(3, 121, 255, 0.12) 0%, rgba(173, 0, 255, 0.08) 100%);
+}
+
+/* User Karma Specific Styling */
+.user-karma__section-header h2 {
+  color: var(--text-bright);
+}
+
+.user-karma__description,
+.user-karma__info-text {
+  color: var(--text-primary);
+}
+
+.user-karma__stats-row {
+  color: var(--text-secondary);
 }
 
 /* Modals */
@@ -363,13 +412,32 @@ main {
   background-color: var(--popup-background);
 }
 
-.select-field__option {
+/* Select Field / Dropdown */
+.select-field {
   background-color: var(--control-background);
+  border: 1px solid var(--control-border);
+  border-radius: 8px;
+}
+
+.select-field--primary {
+  background-color: var(--control-background);
+  border-color: var(--accent-blue);
+}
+
+.select-field__option {
+  background-color: var(--popup-background);
+  color: var(--text-primary);
   border-radius: 4px;
 }
 
 .select-field__option:hover {
   background-color: var(--control-hover);
+  color: var(--text-bright);
+}
+
+.select-field__option option {
+  background-color: var(--popup-background);
+  color: var(--text-primary);
 }
 
 /* Settings */
